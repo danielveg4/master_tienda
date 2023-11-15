@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+#Activar rewrite
+RewriteEngine on
+ErrorDocumment 404 http://localhost/phpmysqlonline/proyectoxxx/error/index 
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f 
+
+RewriteRule ^(.*)/(.*) index.php?controller=$1&action=$2
+# sustituye la primera parte de rewriterule por el
+#primer parametro $1 y la segunda parte en $2
+</IfModule>
