@@ -1,6 +1,7 @@
 <?php
 
 //el controlado le pide al modelo lo que le solicita de la vista
+// los models son lo que accede a la base de datos
 
 class Producto{
     //atributos correspondientes a cada campo de la tabla productos
@@ -175,7 +176,31 @@ class Producto{
         return $result;
     }
 
+    public function edit(){
+        $sql = "UPDATE productos SET nombre={$this->getNombre_id()}, categoria={$this->getCategoria_id()}, descripcion={$this->getDescripcion()}', precio={$this->getPrecio()}, stock={$this->getStock()};";
+        if($this->getImagen() != null){
+            $sql .= ", imagen='{this->getImagen()}'";
+        }
+        $sql .= " WHERE id={$this->id};";
+        $save = $this->db->query($sql);
 
+        $result = false;
+        if($save){
+            $result = true;
+        }
+        return $result;
+    }
+
+    public function delete(){
+        $sql = "DELETE FROM productos WHERE id={$this->id}";
+        $delete = $this->db->query($sql);
+
+        $result = false;
+        if($delete){
+            $result = true;
+        }
+        return $result;
+    }
 
 
 }
